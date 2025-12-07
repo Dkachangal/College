@@ -8,7 +8,10 @@ int fib (int n) {
     return fib(n-1) + fib(n-2);
 }
 int main() {
-    int n = 6;
+    cout<<"Enter n:\n";
+    int n;
+    cin>>n;
+    // int n = 6;
     cout<< fib(n);
 
     return 0;
