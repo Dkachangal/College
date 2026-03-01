@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-Noida Aesthetic Store</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* --- AESTHETIC GLASSMORPHISM CSS --- */
+        :root {
+            --primary: #6C63FF;
+            --bg: #0f0f1a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: #fff;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Background Animated Gradient */
+        .bg-blob {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: var(--primary);
+            filter: blur(150px);
+            opacity: 0.4;
+            z-index: -1;
+            animation: float 10s infinite alternate;
+        }
+
+        @keyframes float { from { transform: translate(0,0); } to { transform: translate(50px, 50px); } }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
+        .cart-count { background: var(--primary); padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; }
+
+        /* Hero Section */
+        header {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 { font-size: 4rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        p { font-size: 1.2rem; color: #ccc; }
+        
+        .btn {
+            padding: 15px 40px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+        .btn:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--primary); }
+
+        /* Product Grid */
+        .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.1); }
+        
+        .card img { width: 100%; border-radius: 15px; height: 200px; object-fit: cover; }
+        .price { font-size: 1.5rem; color: var(--primary); font-weight: bold; }
+
+        /* Checkout Form (The "Backend" Interface) */
+        #contact {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 50px auto;
+            border: 1px solid var(--border);
+        }
+
+        input, textarea {
+            width: 90%;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            color: white;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-blob"></div>
+
+    <nav>
+        <div class="logo">G-NOIDA SKINS</div>
+        <div style="cursor: pointer;" onclick="scrollToSection('contact')">Cart <span class="cart-count">0</span></div>
+    </nav>
+
+    <header data-aos="fade-up">
+        <h1>Level Up Your Setup</h1>
+        <p>Premium Laptop Skins & Stickers delivered to your hostel.</p>
+        <a href="#shop" class="btn">Shop Now</a>
+    </header>
+
+    <div class="container" id="shop">
+        <h2 data-aos="fade-right">Trending Drops</h2>
+        <div class="grid">
+            <div class="card" data-aos="zoom-in">
+                <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=500&auto=format&fit=crop&q=60" alt="Laptop Skin">
+                <h3>Cyberpunk Skin</h3>
+                <p class="price">₹299</p>
+                <button class="btn" onclick="addToCart('Cyberpunk Skin - ₹299')">Add to Cart</button>
+            </div>
+
+            <div class="card" data-aos="zoom-in" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1572375992501-4b0892d50c69?w=500&auto=format&fit=crop&q=60" alt="Sticker Pack">
+                <h3>Anime Sticker Pack (x50)</h3>
+                <p class="price">₹199</p>
+                <button class="btn" onclick="addToCart('Anime Sticker Pack - ₹199')">Add to Cart</button>
+            </div>
+
+            <div class="card" data-aos="zoom-in" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1531297461136-82lw9b44d940?w=500&auto=format&fit=crop&q=60" alt="Keyboard Sticker">
+                <h3>Neon Keycaps Sticker</h3>
+                <p class="price">₹149</p>
+                <button class="btn" onclick="addToCart('Neon Keycaps - ₹149')">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="contact">
+        <h2 style="text-align: center;">Checkout</h2>
+        <p style="text-align: center;">We will contact you via WhatsApp for payment (UPI).</p>
+        
+        <form id="orderForm" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+            
+            <label>Your Name</label>
+            <input type="text" name="name" required placeholder="Enter your name">
+            
+            <label>Your WhatsApp Number</label>
+            <input type="text" name="phone" required placeholder="For payment & delivery">
+
+            <label>Hostel / Address (G Noida)</label>
+            <input type="text" name="address" required placeholder="e.g. Galgotias Hostel C-Block">
+            
+            <label>Your Order</label>
+            <textarea name="order_items" id="orderItems" readonly placeholder="Cart is empty..."></textarea>
+            
+            <button type="submit" class="btn" style="width: 100%;">Place Order</button>
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init(); // Start Animations
+
+        let cart = [];
+        const cartOutput = document.getElementById('orderItems');
+        const countBadge = document.querySelector('.cart-count');
+
+        function addToCart(item) {
+            cart.push(item);
+            // Update the hidden form field automatically
+            cartOutput.value = cart.join('\n');
+            countBadge.innerText = cart.length;
+            alert(item + " added to cart!");
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
