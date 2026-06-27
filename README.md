@@ -1,2 +1,2 @@
 # College
-For all College work.
+For all College work!
